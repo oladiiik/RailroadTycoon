@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.5"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="Core\Core.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Core\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="Core\Core.csproj" />
+      <Content Remove="Core\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Core\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="Core\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Core\obj\Core.csproj.nuget.dgspec.json" />
+      <_ContentIncludedByDefault Remove="Core\obj\project.assets.json" />
+      <_ContentIncludedByDefault Remove="Core\obj\project.packagespec.json" />
+    </ItemGroup>
+
+</Project>

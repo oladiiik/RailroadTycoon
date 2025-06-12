@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="utf-8"/>
+    <title>RailroadTycoon</title>
+
+    <link rel="stylesheet" href="/css/styles.css"/>
+    <link rel="stylesheet" href="/css/clouds.css"/>
+    <link rel="stylesheet" href="/css/water.css"/>
+</head>
+<body>
+<div id="viewport">
+    <div id="controls">
+
+        <div id="budget">Бюджет: <span id="budgetVal">-</span></div>
+        <div id="costPerKm">Ціна за км: <span id="costVal">-</span></div>
+        <div id="rewardPerCity">Нагорода за місто: <span id="rewardVal">-</span></div>
+        <div id="maxCount">Максимум міст: <span id="bestCount">-</span></div>
+        <div id="connectedCount">Під’єднано: <span id="connectedVal">0</span></div>
+        
+        <div class="control-switch">
+            <span class="switch-label">Сітка</span>
+            <label class="switch">
+                <input type="checkbox" id="gridToggleBtn"/>
+                <span class="slider"></span>
+            </label>
+        </div>
+        
+        <div class="control-switch">
+            <span class="switch-label">Розв'язок</span>
+            <label class="switch">
+                <input type="checkbox" id="hintToggleBtn"/>
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <div id="selected-city"></div>
+
+    <div id="layer">
+        <div id="water-container">
+            <img id="water" src="data:image/png;base64,{{WATER}}" draggable="false" alt="water"/>
+        </div>
+
+        <img id="hmap"   src="data:image/png;base64,{{PNG}}"  draggable="false" alt="heightmap"/>
+        <img id="lines"  src="data:image/svg+xml;base64,{{SVG}}" draggable="false" alt="lines"/>
+        <img id="gridSvg" src="data:image/svg+xml;base64,{{GRID}}" draggable="false" alt="grid"/>
+
+        <div id="cities-svg-wrap"></div>
+
+        <div id="clouds-container">
+            <img id="clouds" src="data:image/png;base64,{{CLOUDS}}" draggable="false" alt="clouds"/>
+        </div>
+    </div>
+</div>
+
+<script>window.CELL_SIZE = {px};</script>
+<script type="module" src="/js/main.js"></script>
+</body>
+</html>

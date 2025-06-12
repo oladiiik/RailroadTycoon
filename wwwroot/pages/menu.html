@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="utf-8"/>
+    <title>RailroadTycoon — Меню</title>
+    <link rel="stylesheet" href="/css/menu.css">
+</head>
+<body>
+<div id="bg-layer">
+    <div id="bg-water-wrap">
+        <img src="data:image/png;base64,{{WATER}}" alt="water">
+    </div>
+    <img id="bg-hmap" src="data:image/png;base64,{{PNG}}" alt="relief">
+    <img id="bg-svg" src="data:image/svg+xml;base64,{{SVG}}" alt="isolines & cities">
+    <div id="bg-clouds-wrap">
+        <img src="data:image/png;base64,{{CLOUDS}}" alt="clouds">
+    </div>
+</div>
+<div id="menu" class="vcenter">
+    <button id="playButton">Почати гру</button>
+    <button id="advToggle">Налаштування</button>
+
+    <div id="advancedSettings">
+        <label>Seed: <input type="number" id="seedInput" placeholder="Random"></label>
+        <label>Frequency: <input type="text" id="freqInput" value="0.008"></label>
+        <label>Octaves: <input type="number" id="octavesInput" value="10"></label>
+        <label>Lacunarity: <input type="text" id="lacunarityInput" value="1.4"></label>
+        <label>Gain: <input type="text" id="gainInput" value="0.55"></label>
+        <label>City Count: <input type="number" id="cityContInput" value="450"></label>
+        <label>Initial Budget: <input type="number" id="initialBudgetInput" value="3000000"></label>
+        <label>Cost per Km: <input type="number" id="costPerKmInput" value="50000"></label>
+        <label>Reward per City: <input type="number" id="rewardPerCityInput" value="10000"></label>
+    </div>
+</div>
+
+<script type="module" src="/js/menu.js"></script>
+</body>
+</html>

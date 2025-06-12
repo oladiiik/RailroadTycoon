@@ -1,0 +1,11 @@
+﻿#water {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.1;          
+}
+
+@keyframes moveWater {
+    from { transform: translate3d(0, 0, 0); }
+    to   { transform: translate3d(-50%, 0, 0); }
+}
