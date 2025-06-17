@@ -21,6 +21,8 @@
         this.container.querySelectorAll('.city').forEach(g => {
             g.addEventListener('mousedown', e => this.onMouseDown(g, e));
             g.addEventListener('mouseup',   e => this.onMouseUp(g, e));
+            g.addEventListener('mouseover', () => g.classList.add('city-hover'));
+            g.addEventListener('mouseout',  () => g.classList.remove('city-hover'));
         });
 
         this.container.addEventListener('click', e => {
@@ -31,7 +33,7 @@
     onMouseDown(g, e) {
         this.clear();
         this.startCity = g;
-
+        this.container.classList.add('city-active');
         const index = +g.dataset.index;
 
         if (this.onQueryAffordable) {
@@ -51,7 +53,7 @@
 
         const from = +this.startCity.dataset.index;
         const to   = +g.dataset.index;
-        
+        this.container.classList.remove('city-active');
         if (this.onQueryAffordable) {
             const affordable = this.onQueryAffordable(from)
                 .filter(o => !o.reachable);
@@ -77,6 +79,7 @@
         }
 
         this.startCity = null;
+        
         e.stopPropagation();
     }
     

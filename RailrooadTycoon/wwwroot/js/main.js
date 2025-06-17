@@ -474,4 +474,9 @@ class GameInitializer {
 document.addEventListener('DOMContentLoaded', async () => {
     const gameInitializer = new GameInitializer();
     await gameInitializer.initialize();
+    document.getElementById('reloadBtn')
+        .addEventListener('click', () => location.reload());
+
+    const undoBtn = document.getElementById('undoBtn');
+    
 });

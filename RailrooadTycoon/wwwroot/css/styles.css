@@ -101,4 +101,49 @@
 #gridSvg{
     position:absolute;top:0;left:0;z-index:1;display:none;pointer-events:none
 }
+.city         { cursor: pointer; }   
+.city-active  { cursor: crosshair; }
+.floating-reload {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
 
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+
+    background: #4caf50;
+    color: #fff;
+    font-size: 24px;
+    line-height: 48px;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,.25);
+    transition: background .2s;
+}
+.floating-reload:hover {
+    background: #3d8a40;
+}
+.floating-undo{
+    position:fixed;
+    right:24px;
+    bottom:84px;              /* на 60 px вище за reload */
+
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    border:none;
+
+    background:#ffaa00;
+    color:#fff;
+    font-size:24px;
+    line-height:48px;
+    cursor:pointer;
+
+    box-shadow:0 2px 6px rgba(0,0,0,.25);
+    transition:background .2s;
+    z-index:9999;
+}
+.floating-undo:hover{
+    background:#d68b00;
+}
