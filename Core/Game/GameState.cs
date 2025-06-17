@@ -60,7 +60,7 @@ public sealed class GameState
         int rewardNodes = 0;
         
         if (graphEmpty) {
-            rewardNodes = 1;  
+            rewardNodes = 2;  
         }
         else {
             if (!_connected.Contains(from)) rewardNodes++;
