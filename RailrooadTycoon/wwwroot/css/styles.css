@@ -85,7 +85,7 @@
     will-change:transform
 }
 #hmap{position:relative;z-index:1;pointer-events:none}
-#lines{position:absolute;top:0;left:0;z-index:2;will-change:transform}
+#lines{position:absolute;top:0;left:0;z-index:2;will-change: transform;}
 #lines .city{pointer-events:all;cursor:pointer}
 #lines .city text{pointer-events:none}
 #cities-svg-wrap{position:absolute;top:0;left:0;width:100%;height:100%;
