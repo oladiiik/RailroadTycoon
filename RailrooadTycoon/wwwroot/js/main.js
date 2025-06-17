@@ -2,7 +2,7 @@
 import { CityInteraction } from './cityInteraction.js';
 import { ManualConnectionManager } from './manualConnectionManager.js';
 
-let connectionManager, bestRoute, costPerKm, rewardPerCity;
+let connectionManager, bestRoute, costPerKm, rewardPerCity,cityUI;
 
 const elements = {
     get viewport() { return document.getElementById('viewport'); },
@@ -97,7 +97,7 @@ const UIUpdater = {
     updateBudget(current, cost = null) {
         if (!elements.budgetVal) return;
         elements.budgetVal.textContent = cost != null
-            ? `${Math.round(current)} (−${Math.round(cost)})`
+            ? `${Math.round(current)} (+${Math.round(cost)})`
             : Math.round(current);
     },
 
@@ -452,7 +452,7 @@ class GameInitializer {
     }
 
     setupCityInteraction() {
-        new CityInteraction(
+        cityUI = new CityInteraction(
             elements.citiesSvgWrap,
             elements.selectedCity,
             (from, to) => this.handleConnection(from, to),
@@ -476,7 +476,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     await gameInitializer.initialize();
     document.getElementById('reloadBtn')
         .addEventListener('click', () => location.reload());
-
-    const undoBtn = document.getElementById('undoBtn');
     
+    document.getElementById('undoBtn')
+        .addEventListener('click', async () => {
+            const res = await connectionManager.undo();
+            if (res.success) {
+                cityUI.removeLastLine();
+                UIUpdater.updateBudget(res.newBudget, res.refund);
+                UIUpdater.updateConnected(connectionManager.reachable.size);
+            } 
+        });
+
 });

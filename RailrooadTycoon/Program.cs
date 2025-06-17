@@ -227,6 +227,37 @@ app.MapPost("/connect", async (
     return Results.Json(new ConnectResponse(ok, cost, reason, gs.Budget));
 });
 
+app.MapPost("/undo", async (
+    HttpContext http,
+    IMemoryCache cache,
+    [FromQuery] int   seed,
+    [FromQuery] float freq,
+    [FromQuery] int   octaves,
+    [FromQuery] float lacunarity,
+    [FromQuery] float gain,
+    [FromQuery] int   cityCount        = 450,
+    [FromQuery] double initialBudget   = 3_000_000,
+    [FromQuery] double costPerKm       = 50_000,
+    [FromQuery] double rewardPerCity   = 10_000) =>
+{
+    var hmap        = await GetHeightAsync(cache, gridW, gridH,
+        seed, freq, octaves, lacunarity, gain);
+    var (cities, _) = await GetCitiesAsync(cache, hmap, seed, cityCount, threshold);
+
+    var gs = GetGameState(http, cache, hmap, cities,
+        initialBudget, costPerKm, rewardPerCity, threshold);
+
+    var (ok, refund, reason) = gs.UndoLastConnection();
+
+    return Results.Json(new {
+        success   = ok,
+        refund,
+        reason,
+        newBudget = gs.Budget,
+        links     = gs.Connections
+    });
+});
+
 app.MapGet("/", async (
     IWebHostEnvironment env,
     IMemoryCache        cache,

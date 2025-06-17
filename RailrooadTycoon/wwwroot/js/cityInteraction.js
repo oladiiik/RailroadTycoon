@@ -13,6 +13,7 @@
         this.startCity   = null;
         this.overlayTexts = [];
 
+        this.drawnLines   = [];
         this.attach();
     }
     
@@ -148,6 +149,11 @@
         line.setAttribute('stroke-width', '2');
 
         svg.insertBefore(line, svg.querySelector('.city'));
+        this.drawnLines.push(line);
+    }
+    removeLastLine() {
+        const line = this.drawnLines.pop();
+        if (line) line.remove();
     }
 
     reasonText(code) {

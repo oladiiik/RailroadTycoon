@@ -76,4 +76,28 @@ public sealed class GameState
 
         return (true, cost, null);
     }
+    
+    public (bool success, double? refund, string? reason) UndoLastConnection()
+    {
+        if (_links.Count == 0)
+            return (false, null, "no-connections");
+        var (from, to) = _links[^1];
+        
+        double distKm = _cities[from].DistanceTo(_cities[to]);
+        double cost   = distKm * CostPerKm;
+        
+        _links.RemoveAt(_links.Count - 1);
+        _connected.Clear();
+        foreach (var (a, b) in _links) {
+            _connected.Add(a);
+            _connected.Add(b);
+        }
+        Budget += cost;
+        int orphaned = 0;
+        if (!_connected.Contains(from)) orphaned++;
+        if (!_connected.Contains(to))   orphaned++;
+        Budget -= orphaned * RewardPerCity;
+
+        return (true, cost, null);
+    }
 }
